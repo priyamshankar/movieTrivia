@@ -1,0 +1,19 @@
+{
+  "name": "movie-trivia-server",
+  "version": "1.0.0",
+  "description": "server for movie trivia client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priyamshankar/movieTrivia.git"
+  },
+  "author": "priyam Shankar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/priyamshankar/movieTrivia/issues"
+  },
+  "homepage": "https://github.com/priyamshankar/movieTrivia#readme"
+}
