@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style/GamePage.css";
 import io from "socket.io-client";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import PlayArea from "./playArea/PlayArea";
 
 const socket = io("http://localhost:8005");
 
@@ -46,6 +47,7 @@ const GamePage = () => {
   }
   return (
     <div>
+        <PlayArea/>
       <input type="text" onChange={handleMessageChange} />
       <button onClick={sendmessage}>send</button>
     </div>

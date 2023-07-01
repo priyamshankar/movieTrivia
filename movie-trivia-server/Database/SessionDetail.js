@@ -7,6 +7,7 @@ const sessionDetail = new mongoose.Schema({
       player: String,
     },
   ],
+  movie:[],
 });
 
 const SessionDetailModel = new mongoose.model ("SessionDetail",sessionDetail);

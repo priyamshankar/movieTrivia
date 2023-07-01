@@ -23,8 +23,8 @@ const MainDash = () => {
   async function handleJoinRoom(e) {
     if (roomId != null) {
         const result = await isRoomValid();
-        // console.log(result)
       if (result  === true) {
+        localStorage.setItem("admin",false);
         navigate(`/game/${roomId}`);
       } else {
         alert("Room id dosen't exist Enter a valid one");
@@ -50,7 +50,8 @@ const MainDash = () => {
                 }
             ]
         }).then((res)=>{
-            console.log(res);
+            // console.log(res);
+            localStorage.setItem("admin",true);
             navigate(`/game/${roomId}`);
         })
       }
