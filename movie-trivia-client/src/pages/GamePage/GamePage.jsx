@@ -12,11 +12,11 @@ const GamePage = () => {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    socket.on("rec", (data) => {
+    socket.on("getMessage", (data) => {
       console.log(data);
     });
     return () => {
-      socket.off("rec");
+      socket.off("getMessage");
     };
   }, []);
 
@@ -35,21 +35,10 @@ const GamePage = () => {
     };
   }, []);
 
-  function handleRoomChange(e) {
-    // console.log(e.target.value)
-    setRoom(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  async function sendmessage(e) {
     e.preventDefault();
-    if (Room != null) {
-      socket.emit("roomId", Room);
-    }
-  }
-
-  function sendmessage(e) {
-    e.preventDefault();
-    socket.emit("sendmessage", { Room, message });
+    const name =await localStorage.getItem("playerName");
+    socket.emit("sendmessage", { Room, message, name });
   }
 
   function handleMessageChange(e) {
@@ -57,8 +46,6 @@ const GamePage = () => {
   }
   return (
     <div>
-      <input type="text" onChange={handleRoomChange} />
-      <button onClick={handleSubmit}>Join</button>
       <input type="text" onChange={handleMessageChange} />
       <button onClick={sendmessage}>send</button>
     </div>

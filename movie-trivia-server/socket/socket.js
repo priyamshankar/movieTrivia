@@ -18,8 +18,7 @@ io.on("connection",(socket)=>{
     });
 
     socket.on("sendmessage",(data)=>{
-        const {Room,message} = data;
-        socket.to(Room).emit("rec",message);
+        socket.to(data.Room).emit("getMessage",{message :data.message, name : data.name});
     })
 
 })

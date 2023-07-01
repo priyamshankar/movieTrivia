@@ -9,22 +9,22 @@ const MainDash = () => {
   const [playerName, setplayerName] = useState(null);
 
   async function isRoomValid() {
+    var state ;
     await axios
       .post("http://localhost:5000/api/checkroom", {
         room: roomId,
       })
       .then((res) => {
-        if (res === "true") {
-          return true;
-        } else {
-          return false;
-        }
+        state=res.data;
       });
+      return state;
   }
 
-  function handleJoinRoom(e) {
+  async function handleJoinRoom(e) {
     if (roomId != null) {
-      if (isRoomValid() === true) {
+        const result = await isRoomValid();
+        // console.log(result)
+      if (result  === true) {
         navigate(`/game/${roomId}`);
       } else {
         alert("Room id dosen't exist Enter a valid one");
@@ -37,7 +37,9 @@ const MainDash = () => {
         alert("first enter the player name");
         return;
     }
-    if (isRoomValid() === true) {
+    const result = await isRoomValid();
+
+    if (result === true) {
         alert("Room id already exist Enter another one");
       } else {
         axios.post("http://localhost:5000/api/addroom",{

@@ -10,10 +10,10 @@ router.post("/api/checkroom",async (req,res)=>{
         const fetchedFromDb = await sessionDetail.findOne({
             room : req.body.room,
         }).then((re)=>{
-            console.log(re);
-            if(re.room!==null){
-                res.send("false");
-            }else res.send("true");
+            // console.log(re);
+            if(re!==null){
+                res.send(true);
+            }else res.send(false);
         })
     }catch(e){
         console.log(e);
