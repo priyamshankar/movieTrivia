@@ -4,9 +4,9 @@ import io from "socket.io-client";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import PlayArea from "./playArea/PlayArea";
 
-const socket = io("http://localhost:8005");
 
 const GamePage = () => {
+  const socket = io("http://localhost:8005");
   const navigate = useNavigate();
   const params = useParams();
   const [Room, setRoom] = useState(params.roomData);
@@ -47,7 +47,7 @@ const GamePage = () => {
   }
   return (
     <div>
-        <PlayArea/>
+        <PlayArea socket={socket}/>
       <input type="text" onChange={handleMessageChange} />
       <button onClick={sendmessage}>send</button>
     </div>
