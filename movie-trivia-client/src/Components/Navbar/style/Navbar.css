@@ -1,9 +1,10 @@
 .navbar-container {
-  height: 10vh;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  color: #f6fdfd;
 }
 .navbar-container .grid-right-half-nav {
   padding-left: 8rem;

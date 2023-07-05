@@ -1,0 +1,72 @@
+$global-background-color: #062123;
+$global-text: #f6fdfd;
+$secondary-color: #0a3034;
+$primary-color : #db3e33;
+$accent-color : #8f2119;
+
+.mainDashContainer{
+    // height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 4rem;
+    
+    .grid-comp-maindash{
+        display: flex;
+        flex-direction: column;
+        color: $global-text;
+        align-items: center;
+        justify-content: center;
+        span{
+            color:$primary-color;
+        }
+        h1{
+            font-size: 45px;
+        }
+        h2{
+            font-weight: 300;
+        }
+        .button_container_MianDash{
+            display: flex;
+            gap: 3rem;
+            button{
+                all: unset;
+                width: 10rem;
+                height: 3rem;
+                cursor: pointer;
+                text-align: center;
+                border-radius: 10px;
+            }
+            .maindashjoin{
+                background-color: $secondary-color;
+                color: $global-text;
+            }
+            .maindashcreate{
+                background-color: $primary-color;
+                color: black;
+            }
+            .maindashcreate:hover{
+                background-color: $secondary-color;
+                color: $global-text;
+            }
+            .maindashjoin:hover{
+                background-color: $primary-color;
+                color: black;
+            }
+        }
+        .create_mainDash{
+            
+        }
+        .joinMainDash{
+
+        }
+    }
+    .grid-pic-maindash{
+        // padding-top: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            height: 67vh;
+        }
+    }
+}
