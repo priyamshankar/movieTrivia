@@ -103,9 +103,18 @@ const MainDash = () => {
           </div>: <div className="joinMainDash">
           <input
           type="text"
+          placeholder="enter you name"
+          onChange={(e) => {
+            localStorage.setItem("playerName", e.target.value);
+            setplayerName(e.target.value);
+          }}
+          />
+          <input
+          type="text"
           onChange={(e) => {
             setroomId(e.target.value);
           }}
+          placeholder="Enter Room Id"
           />
           <button onClick={handleJoinRoom}>Join Room</button>
           </div> }

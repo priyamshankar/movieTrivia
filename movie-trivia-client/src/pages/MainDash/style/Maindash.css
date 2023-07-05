@@ -3,6 +3,14 @@
   grid-template-columns: 1fr 1fr;
   padding-top: 4rem;
 }
+.mainDashContainer button {
+  all: unset;
+  width: 10rem;
+  height: 3rem;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+}
 .mainDashContainer .grid-comp-maindash {
   display: flex;
   flex-direction: column;
@@ -22,14 +30,6 @@
 .mainDashContainer .grid-comp-maindash .button_container_MianDash {
   display: flex;
   gap: 3rem;
-}
-.mainDashContainer .grid-comp-maindash .button_container_MianDash button {
-  all: unset;
-  width: 10rem;
-  height: 3rem;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 10px;
 }
 .mainDashContainer .grid-comp-maindash .button_container_MianDash .maindashjoin {
   background-color: #0a3034;

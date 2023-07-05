@@ -9,7 +9,14 @@ $accent-color : #8f2119;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-top: 4rem;
-    
+    button{
+        all: unset;
+        width: 10rem;
+        height: 3rem;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 10px;
+    }
     .grid-comp-maindash{
         display: flex;
         flex-direction: column;
@@ -28,14 +35,7 @@ $accent-color : #8f2119;
         .button_container_MianDash{
             display: flex;
             gap: 3rem;
-            button{
-                all: unset;
-                width: 10rem;
-                height: 3rem;
-                cursor: pointer;
-                text-align: center;
-                border-radius: 10px;
-            }
+            
             .maindashjoin{
                 background-color: $secondary-color;
                 color: $global-text;
@@ -54,7 +54,7 @@ $accent-color : #8f2119;
             }
         }
         .create_mainDash{
-            
+
         }
         .joinMainDash{
 
