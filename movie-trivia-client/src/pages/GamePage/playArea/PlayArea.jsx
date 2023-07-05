@@ -28,11 +28,6 @@ const PlayArea = ({ socket }) => {
   }, []);
 
   useEffect(() => {
-    // socket.on("startGame", (data) => {
-    //   if (moviedataSet) {
-    //     startRound();
-    //   }
-    // });
     const handleStartGame = ()=>{
       startRound();   
     }
@@ -60,12 +55,6 @@ const PlayArea = ({ socket }) => {
     }
   }, [timer,setTimer]);
 
-  // useEffect(()=>{
-  //   if(timer===0){
-  //     // setRound(prevRound=>prevRound+1);
-  //   }
-  // },[timer]);
-
   function startTimer(){
     setGameOngoing(true);
     setTimer(2);
@@ -73,12 +62,7 @@ const PlayArea = ({ socket }) => {
 
   function startRound() {
     startTimer();
-    // setRound(Round + 1);
-    // console.log(Round);
-    console.log("here is the round",Round);
-
-    setCurrentQuestion(moviedataSet[Round]);   
-    // setRound(prevRound => prevRound + 1);
+    setCurrentQuestion(moviedataSet[Round]);
   }
 
   function gameOver() {}
@@ -90,12 +74,11 @@ const PlayArea = ({ socket }) => {
       const name = localStorage.getItem("playerName");
       socket.emit("guessedit", { Room, name });
     }
-
   }
+
   function startRoundButton() {
     socket.emit("startRoundbtn", { Room });
     startRound();
-
   }
 
   return (

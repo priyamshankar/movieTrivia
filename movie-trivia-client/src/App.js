@@ -3,10 +3,13 @@ import GamePage from "./pages/GamePage/GamePage";
 import GameSelection from "./pages/GameSelectionPage/GameSelection";
 import InsertMovies from "./pages/InsertMovies/InsertMovies";
 import MainDash from "./pages/MainDash/MainDash";
+import "./Global/GlobalStyle/style.css";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
     <div>
+      <Navbar/>
       <BrowserRouter>
         <Routes>
           <Route path="/selection" element={<GameSelection/>}/>

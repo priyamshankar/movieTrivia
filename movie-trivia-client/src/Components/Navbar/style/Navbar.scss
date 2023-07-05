@@ -1,0 +1,48 @@
+$global-background-color: #062123;
+$global-text: #f6fdfd;
+$secondary-color: #0a3034;
+$primary-color : #db3e33;
+$accent-color : #8f2119;
+
+$nav-font-height:18px;
+
+
+.navbar-container{
+    // background-color: black;
+    height: 10vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    
+
+    .grid-right-half-nav{
+        padding-left: 8rem;
+        display: flex;
+        gap: 1.5rem;
+        .BrandName{
+            color: $global-text;
+            font-size: 37px;
+            font-weight: 600;
+        }
+    }
+    .gridlefthalf-nav{
+        display: flex;
+        gap:5rem;
+        font-size: $nav-font-height;
+        button{
+            all: unset;
+            background-color: $primary-color;
+            width: 10rem;
+            height: 3rem;
+            text-align: center;
+            border-radius: 10px;
+            color: $secondary-color;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: $secondary-color;
+            color: $global-text;
+        }
+    }
+}

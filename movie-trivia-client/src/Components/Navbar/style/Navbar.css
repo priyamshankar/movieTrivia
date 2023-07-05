@@ -1,0 +1,36 @@
+.navbar-container {
+  height: 10vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+.navbar-container .grid-right-half-nav {
+  padding-left: 8rem;
+  display: flex;
+  gap: 1.5rem;
+}
+.navbar-container .grid-right-half-nav .BrandName {
+  color: #f6fdfd;
+  font-size: 37px;
+  font-weight: 600;
+}
+.navbar-container .gridlefthalf-nav {
+  display: flex;
+  gap: 5rem;
+  font-size: 18px;
+}
+.navbar-container .gridlefthalf-nav button {
+  all: unset;
+  background-color: #db3e33;
+  width: 10rem;
+  height: 3rem;
+  text-align: center;
+  border-radius: 10px;
+  color: #0a3034;
+  cursor: pointer;
+}
+.navbar-container .gridlefthalf-nav button:hover {
+  background-color: #0a3034;
+  color: #f6fdfd;
+}/*# sourceMappingURL=Navbar.css.map */
