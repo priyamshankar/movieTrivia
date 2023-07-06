@@ -3,6 +3,7 @@ import "./style/GamePage.css";
 import io from "socket.io-client";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import PlayArea from "./playArea/PlayArea";
+import ChatArea from "./chatArea/ChatArea";
 
 
 const GamePage = () => {
@@ -12,14 +13,6 @@ const GamePage = () => {
   const [Room, setRoom] = useState(params.roomData);
   const [message, setMessage] = useState(null);
 
-  useEffect(() => {
-    socket.on("getMessage", (data) => {
-      console.log(data);
-    });
-    return () => {
-      socket.off("getMessage");
-    };
-  }, []);
 
   useEffect(() => {
     if (Room != null) {
@@ -46,10 +39,9 @@ const GamePage = () => {
     setMessage(e.target.value);
   }
   return (
-    <div>
+    <div className="gamepage_container">
         <PlayArea socket={socket}/>
-      <input type="text" onChange={handleMessageChange} />
-      <button onClick={sendmessage}>send</button>
+        <ChatArea socket={socket}/>
     </div>
   );
 };

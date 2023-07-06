@@ -1,0 +1,39 @@
+$global-background-color: #062123;
+$global-text: #f6fdfd;
+$secondary-color: #0a3034;
+$primary-color : #db3e33;
+$accent-color : #8f2119;
+
+.chatAreaContainer{
+    display: grid;
+    grid-template-rows: 90% 10%;
+    .messageAreaChatArea{
+        background-color: $secondary-color;
+        overflow: scroll;
+    }
+    .textareaChatArea{
+        display: grid;
+        grid-template-columns: 78% 12%;
+        // justify-content: center;
+        align-items: center;
+        gap: 1.2rem;
+        input{
+            all: unset;
+            background-color: $global-text;
+            height: 2.5rem;
+            border-radius: 25px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: $global-background-color;
+        }
+        button{
+            all: unset;
+            height: 2.5rem;
+            width: 4.5rem;
+            background-color: $accent-color;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+}

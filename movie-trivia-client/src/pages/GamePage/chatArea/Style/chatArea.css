@@ -1,0 +1,32 @@
+.chatAreaContainer {
+  display: grid;
+  grid-template-rows: 90% 10%;
+}
+.chatAreaContainer .messageAreaChatArea {
+  background-color: #0a3034;
+  overflow: scroll;
+}
+.chatAreaContainer .textareaChatArea {
+  display: grid;
+  grid-template-columns: 78% 12%;
+  align-items: center;
+  gap: 1.2rem;
+}
+.chatAreaContainer .textareaChatArea input {
+  all: unset;
+  background-color: #f6fdfd;
+  height: 2.5rem;
+  border-radius: 25px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #062123;
+}
+.chatAreaContainer .textareaChatArea button {
+  all: unset;
+  height: 2.5rem;
+  width: 4.5rem;
+  background-color: #8f2119;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}/*# sourceMappingURL=chatArea.css.map */
