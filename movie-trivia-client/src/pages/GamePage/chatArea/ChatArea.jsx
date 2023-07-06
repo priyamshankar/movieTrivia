@@ -3,7 +3,7 @@ import "./Style/chatArea.css";
 import { useParams } from "react-router-dom";
 
 const ChatArea = ({ socket }) => {
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState("");
   const params = useParams();
   const [Room, setRoom] = useState(params.roomData);
   const [shownmessages, setshownmessages] = useState([]);
@@ -19,12 +19,10 @@ const ChatArea = ({ socket }) => {
   }, []);
 
   function addmessagesToState(mess) {
-    console.log(mess);
     setshownmessages((prevData) => [...prevData, mess]);
   }
 
   async function sendmessage() {
-    // e.preventDefault();
     const name = await localStorage.getItem("playerName");
     setshownmessages((prevD) => [...prevD, { message: message, name: pName }]);
     await socket.emit("sendmessage", { Room, message, name });

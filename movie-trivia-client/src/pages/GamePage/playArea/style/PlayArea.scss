@@ -1,0 +1,77 @@
+$global-background-color: #062123;
+$global-text: #f6fdfd;
+$secondary-color: #0a3034;
+$primary-color : #db3e33;
+$accent-color : #8f2119;
+
+
+.playAreaContainer{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    justify-content: center;
+    // align-items: center;
+    padding-left: 2rem;
+    div{
+        border-radius: 10px;
+    }
+    .row1Playarea{
+        display: grid;
+        height: 40%;
+        gap: 0.6rem;
+        // width: 90%;
+        grid-template-columns: 80% 20%;
+        .col1row1pa{
+            background-color: $primary-color;
+            .dialogPlayArea{
+                font-size: 30px;
+                padding: 2rem 2rem 2rem 2rem;
+                font-weight: 600;
+            }
+        }
+        .col2row1pa{
+            background-color: $secondary-color;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            gap: 2rem;
+            span{
+                font-family: 'Chakra Petch', sans-serif;
+                font-size: 80px;
+            }
+            button{
+                all: unset;
+                background-color: $global-text;
+                height: 2.5rem;
+                width: 8rem;
+                border-radius: 10px;
+                text-align: center;
+                color: $primary-color;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 18px;
+            }
+            button:hover{
+                background-color: $accent-color;
+            }
+        }
+    }
+    .row2playarea{
+        display: grid;
+        grid-template-columns: 60% 40%;
+        gap: 0.6rem;
+        height: 30%;
+        // width: 90%;
+        .col1row2pa{
+            background-color: $global-text;
+        }
+        .col2row2pa{
+            background-color: $accent-color;
+
+        }
+    }
+}
