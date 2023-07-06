@@ -6,10 +6,43 @@ $accent-color : #8f2119;
 
 .chatAreaContainer{
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 9fr 1fr;
     .messageAreaChatArea{
+        height: 80vh;
+        background-color: black;
         background-color: $secondary-color;
-        overflow: scroll;
+        overflow:scroll;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding:0.5rem 0.5rem 0.5rem 0.5rem;
+        .messageblock{
+            .msgCommon{
+                border-radius: 15px;
+                padding: 0.3rem 1rem 1rem 0.7rem;
+                width: 75%;
+                min-height: 3rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+                span{
+                    // font-size: 18px;
+                    font-weight: 550;
+                }
+                div{
+                    font-weight: 400;
+                    padding-left: 0.5rem;
+                }
+            }
+            .messageblockMy{
+                background-color: $global-background-color;
+                float: right;
+                // color: $primary-color;
+            }
+            .messageblockOther{
+                background-color: $accent-color
+            }
+        }
     }
     .textareaChatArea{
         display: grid;
@@ -25,6 +58,8 @@ $accent-color : #8f2119;
             padding-left: 1rem;
             padding-right: 1rem;
             color: $global-background-color;
+            font-size: 20px;
+            font-weight: 500;
         }
         button{
             all: unset;

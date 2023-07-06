@@ -23,11 +23,12 @@ const ChatArea = ({ socket }) => {
     setshownmessages((prevData) => [...prevData, mess]);
   }
 
-  async function sendmessage(e) {
-    e.preventDefault();
+  async function sendmessage() {
+    // e.preventDefault();
     const name = await localStorage.getItem("playerName");
     setshownmessages((prevD) => [...prevD, { message: message, name: pName }]);
     await socket.emit("sendmessage", { Room, message, name });
+    setMessage("");
   }
 
   function handleMessageChange(e) {
@@ -40,14 +41,13 @@ const ChatArea = ({ socket }) => {
         {shownmessages.map((data, index) => {
           return (
             <div key={index} className="messageblock">
-              {/* {data} */}
               {data.name === pName ? (
-                <div className="messageblockMy">
+                <div className="messageblockMy msgCommon">
                   <span>{data.name}</span>
                   <div>{data.message}</div>
                 </div>
               ) : (
-                <div className="messageblockOther">
+                <div className="messageblockOther msgCommon">
                   <span>{data.name}</span>
                   <div>{data.message}</div>
                 </div>
@@ -57,7 +57,16 @@ const ChatArea = ({ socket }) => {
         })}
       </div>
       <div className="textareaChatArea">
-        <input type="text" onChange={handleMessageChange} />
+        <input value={message}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              sendmessage();
+              event.target.value = "";
+            }
+          }}
+          type="text"
+          onChange={handleMessageChange}
+        />
         <button onClick={sendmessage}>send</button>
       </div>
     </div>
