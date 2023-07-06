@@ -23,6 +23,10 @@ const MainDash = () => {
   }
 
   async function handleJoinRoom(e) {
+    if (playerName === null) {
+      alert("first enter the player name");
+      return;
+    }
     if (roomId != null) {
       const result = await isRoomValid();
       if (result === true) {
@@ -97,6 +101,7 @@ const MainDash = () => {
           </div>
         </>
       ) : Dialogbool == "create" ? (
+
         <div className="create_mainDash dash_next_menu">
           <h1>
             Create a Room to play with friends.
