@@ -11,6 +11,27 @@
   text-align: center;
   border-radius: 10px;
 }
+.mainDashContainer .maindashjoin {
+  background-color: #0a3034;
+  color: #f6fdfd;
+}
+.mainDashContainer .maindashcreate {
+  background-color: #db3e33;
+  color: black;
+}
+.mainDashContainer .maindashcreate:hover {
+  background-color: #0a3034;
+  color: #f6fdfd;
+}
+.mainDashContainer .maindashjoin:hover {
+  background-color: #db3e33;
+  color: black;
+}
+.mainDashContainer .button_container_MianDash {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+}
 .mainDashContainer .grid-comp-maindash {
   display: flex;
   flex-direction: column;
@@ -27,25 +48,50 @@
 .mainDashContainer .grid-comp-maindash h2 {
   font-weight: 300;
 }
-.mainDashContainer .grid-comp-maindash .button_container_MianDash {
+.mainDashContainer .dash_next_menu {
   display: flex;
-  gap: 3rem;
-}
-.mainDashContainer .grid-comp-maindash .button_container_MianDash .maindashjoin {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   background-color: #0a3034;
-  color: #f6fdfd;
+  width: 75%;
+  height: 80%;
+  margin-left: 5vw;
+  margin-top: 3vh;
 }
-.mainDashContainer .grid-comp-maindash .button_container_MianDash .maindashcreate {
+.mainDashContainer .dash_next_menu input {
+  all: unset;
+  width: 60%;
+  height: 2.5rem;
+  background-color: #f6fdfd;
+  border-radius: 6px;
+  text-align: center;
+  color: #8f2119;
+}
+.mainDashContainer .dash_next_menu .maindashcreate-btn {
   background-color: #db3e33;
   color: black;
 }
-.mainDashContainer .grid-comp-maindash .button_container_MianDash .maindashcreate:hover {
-  background-color: #0a3034;
+.mainDashContainer .dash_next_menu .maindashcreate-btn:hover {
+  background-color: #062123;
   color: #f6fdfd;
 }
-.mainDashContainer .grid-comp-maindash .button_container_MianDash .maindashjoin:hover {
+.mainDashContainer .dash_next_menu .maindashjoin-btn {
+  background-color: #062123;
+  color: #f6fdfd;
+}
+.mainDashContainer .dash_next_menu .maindashjoin-btn:hover {
   background-color: #db3e33;
   color: black;
+}
+.mainDashContainer .dash_next_menu h1 {
+  color: #f6fdfd;
+  text-align: center;
+}
+.mainDashContainer .joinMainDash {
+  display: flex;
+  flex-direction: column;
 }
 .mainDashContainer .grid-pic-maindash {
   display: flex;

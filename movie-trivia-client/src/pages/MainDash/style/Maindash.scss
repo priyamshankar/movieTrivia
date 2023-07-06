@@ -3,6 +3,7 @@ $global-text: #f6fdfd;
 $secondary-color: #0a3034;
 $primary-color : #db3e33;
 $accent-color : #8f2119;
+// https://realtimecolors.com/?colors=f6fdfd-062123-db3e33-0a3034-8f2119
 
 .mainDashContainer{
     // height: 100%;
@@ -17,6 +18,29 @@ $accent-color : #8f2119;
         text-align: center;
         border-radius: 10px;
     }
+    .maindashjoin{
+        background-color: $secondary-color;
+        color: $global-text;
+    }
+    .maindashcreate{
+        background-color: $primary-color;
+        color: black;
+    }
+    .maindashcreate:hover{
+        background-color: $secondary-color;
+        color: $global-text;
+    }
+    .maindashjoin:hover{
+        background-color: $primary-color;
+        color: black;
+    }
+
+    .button_container_MianDash{
+        display: flex;
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
     .grid-comp-maindash{
         display: flex;
         flex-direction: column;
@@ -32,33 +56,55 @@ $accent-color : #8f2119;
         h2{
             font-weight: 300;
         }
-        .button_container_MianDash{
-            display: flex;
-            gap: 3rem;
-            
-            .maindashjoin{
-                background-color: $secondary-color;
-                color: $global-text;
-            }
-            .maindashcreate{
-                background-color: $primary-color;
-                color: black;
-            }
-            .maindashcreate:hover{
-                background-color: $secondary-color;
-                color: $global-text;
-            }
-            .maindashjoin:hover{
-                background-color: $primary-color;
-                color: black;
-            }
+        
+    }
+    .dash_next_menu{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background-color: $secondary-color;
+        width: 75%;
+        height: 80%;
+        margin-left: 5vw;
+        margin-top: 3vh;
+        input{
+            all: unset;
+            width: 60%;
+            height: 2.5rem;
+            background-color: $global-text;
+            border-radius: 6px;
+            text-align: center;
+            color: $accent-color;
         }
-        .create_mainDash{
-
+        .maindashcreate-btn{
+            background-color: $primary-color;
+            color: black;
         }
-        .joinMainDash{
-
+        .maindashcreate-btn:hover{
+            background-color: $global-background-color;
+            color: $global-text;
         }
+        .maindashjoin-btn{
+            background-color: $global-background-color;
+            color: $global-text;
+        }
+        .maindashjoin-btn:hover{
+            background-color: $primary-color;
+            color: black;
+        }
+        h1{
+            color: $global-text;
+            text-align: center;
+        }
+    }
+    .create_mainDash{
+        
+    }
+    .joinMainDash{
+        display: flex;
+        flex-direction: column;
     }
     .grid-pic-maindash{
         // padding-top: 5rem;
