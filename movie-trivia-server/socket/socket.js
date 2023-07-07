@@ -8,8 +8,9 @@ io.on("connection",(socket)=>{
     console.log(socket.id);
 
     socket.on("joinRoom",(data)=>{
-        socket.join(data);
-        console.log(`Client joined the room: ${data}`);
+        socket.join(data.Room);
+        socket.to(data.Room).emit("someoneJoined",{name:data.name,Room:data.Room});
+        console.log(`${data.name} joined the room: ${data.Room}`);
     });
 
     socket.on('leaveRoom', (roomName) => {

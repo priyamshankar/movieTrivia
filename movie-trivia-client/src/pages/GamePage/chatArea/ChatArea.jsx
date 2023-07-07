@@ -13,10 +13,41 @@ const ChatArea = ({ socket }) => {
     socket.on("getMessage", (data) => {
       addmessagesToState(data);
     });
+
+    socket.on("guessitBack", (data) => {
+      addGuessHandler(data);
+    });
+
+    socket.on("someoneJoined",(data)=>{
+      joinedUserHandler(data.name);
+    })
+
     return () => {
       socket.off("getMessage");
+      socket.off("guessitBack");
+      socket.off("someoneJoined");
     };
   }, []);
+
+  function joinedUserHandler(mess){
+    setshownmessages((prevData) => [
+      ...prevData,
+      {
+        message: `${mess} Joined`,
+        name: "mess39945",
+      },
+    ]);
+  }
+
+  function addGuessHandler(mess) {
+    setshownmessages((prevData) => [
+      ...prevData,
+      {
+        message: mess,
+        name: "mess39945",
+      },
+    ]);
+  }
 
   function addmessagesToState(mess) {
     setshownmessages((prevData) => [...prevData, mess]);
@@ -44,6 +75,10 @@ const ChatArea = ({ socket }) => {
                   <span>{data.name}</span>
                   <div>{data.message}</div>
                 </div>
+              ) : data.name === "mess39945" ? (
+                <div className="guessedcorrentca">
+                  {data.message}
+                </div>
               ) : (
                 <div className="messageblockOther msgCommon">
                   <span>{data.name}</span>
@@ -55,7 +90,8 @@ const ChatArea = ({ socket }) => {
         })}
       </div>
       <div className="textareaChatArea">
-        <input value={message}
+        <input
+          value={message}
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               sendmessage();

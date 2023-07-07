@@ -16,7 +16,7 @@ const GamePage = () => {
 
   useEffect(() => {
     if (Room != null) {
-      socket.emit("joinRoom", Room);
+      socket.emit("joinRoom", {name:localStorage.getItem("playerName"),Room:Room});
       if (localStorage.getItem("playerName") == null) {
         alert("Enter your name at the main page");
         navigate("/");

@@ -35,6 +35,16 @@
 .chatAreaContainer .messageAreaChatArea .messageblock .messageblockOther {
   background-color: #8f2119;
 }
+.chatAreaContainer .messageAreaChatArea .guessedcorrentca {
+  background-color: #f6fdfd;
+  color: #db3e33;
+  border-radius: 20px;
+  width: 70%;
+  text-align: center;
+  height: 1.5rem;
+  padding-top: 0.3rem;
+  margin: 0.4rem 0rem 0.4rem 1rem;
+}
 .chatAreaContainer .textareaChatArea {
   display: grid;
   grid-template-columns: 78% 12%;

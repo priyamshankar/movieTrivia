@@ -43,6 +43,16 @@ $accent-color : #8f2119;
                 background-color: $accent-color
             }
         }
+        .guessedcorrentca{
+            background-color: #f6fdfd;
+            color: $primary-color;
+            border-radius: 20px;
+            width: 70%;
+            text-align: center;
+            height: 1.5rem;
+            padding-top: 0.3rem;
+            margin: 0.4rem 0rem 0.4rem 1rem;
+        }
     }
     .textareaChatArea{
         display: grid;

@@ -14,6 +14,7 @@ const PlayArea = ({ socket }) => {
   const [points, setpoints] = useState(0); //for future game points
   const [admin, setadmin] = useState(localStorage.getItem("admin"));
   const [Round, setRound] = useState(-1);
+  
 
   useEffect(() => {
     async function getData() {
@@ -34,13 +35,8 @@ const PlayArea = ({ socket }) => {
     };
     socket.on("startGame", handleStartGame);
 
-    socket.on("guessitBack", (data) => {
-      console.log(data);
-    });
-
     return () => {
       socket.off("startGame");
-      socket.off("guessitBack");
     };
   }, [moviedataSet, Round, socket]);
 
