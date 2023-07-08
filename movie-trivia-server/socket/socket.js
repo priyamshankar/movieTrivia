@@ -29,4 +29,10 @@ io.on("connection",(socket)=>{
     socket.on("startRoundbtn",(data)=>{
         socket.to(data.Room).emit("startGame",{room:data.Room});
     });
+    socket.on("scoreEmit",(data)=>{
+        const Room = data.Room;
+        const name = data.name;
+        const score = data.score;
+        socket.to(data.Room).emit("scoreFetch",{name,score});
+    });
 })

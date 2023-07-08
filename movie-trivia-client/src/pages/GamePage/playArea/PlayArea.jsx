@@ -12,6 +12,9 @@ const PlayArea = ({ socket }) => {
   const [gameongoing, setGameOngoing] = useState(false);
   const [answer, setAnswer] = useState("");
   const [correctStatus, setcorrectStatus] = useState("Guess?")
+  const [GameStarts, setGameStarts] = useState(false)
+  const [currScore, setcurrScore] = useState(0)
+  const [roundScore,setroundScore] = useState(50);
   const [admin, setadmin] = useState(localStorage.getItem("admin"));
   const [Round, setRound] = useState(-1);
   const [hints, setHints] = useState({
@@ -22,8 +25,8 @@ const PlayArea = ({ socket }) => {
     yearLaunched: false,
   });
   const [points, setpoints] = useState([{
-    name: localStorage.getItem("playerName"), score : 100
-  }]); //for future game points
+    name: localStorage.getItem("playerName"), score : 0
+  }]); 
 
   useEffect(() => {
     async function getData() {
@@ -32,7 +35,6 @@ const PlayArea = ({ socket }) => {
         .post("http://localhost:5000/api/getmovie", { roomdata })
         .then((res) => {
           setmoviedataSet(res.data);
-          console.log("data set on non admin", res.data);
         });
     }
     getData();
@@ -46,15 +48,29 @@ const PlayArea = ({ socket }) => {
     socket.on("someoneJoined",(data)=>{
       scoreOnjoinHandler(data.name);
     })
+    socket.on("scoreFetch",(data)=>{
+      scoreUpdate(data.name,data.score);
+    })
 
     return () => {
       socket.off("startGame");
       socket.off("someoneJoined");
+      socket.off("scoreFetch");
     };
   }, [moviedataSet, Round, socket]);
 
+  let gameTimeout;
   useEffect(() => {
-    timer > 0 && setTimeout(() => setTimer(timer - 1), 1000);
+
+    const decrementTimer = () => {
+      if (timer > 0) {
+        setTimer(prevTimer => prevTimer - 1);
+      }
+    };
+
+    if (timer > 0) {
+      gameTimeout = setTimeout(decrementTimer, 1000);
+    }
     if (timer === 0) {
       // setRound(Round + 1);
       setRound((prevRound) => prevRound + 1);
@@ -62,22 +78,40 @@ const PlayArea = ({ socket }) => {
       if (Round === 5) {
         gameOver();
       }
+      roundEnds();
     }
   }, [timer, setTimer]);
 
   function scoreOnjoinHandler(mess){
     setpoints((prev)=>[...prev,{
-      name:mess,score:100
+      name:mess,score:0
     }])
   }
-
+  
   function startTimer() {
-    setGameOngoing(true);
-    setTimer(360);
+    setTimer(10);
   }
-
+  
+  function roundEnds(){
+    setTimer(0);
+    clearTimeout(gameTimeout);
+  }
+  
   function startRound() {
+    roundEnds();
+    setAnswer("");
+    setroundScore(50);
+    setHints({
+      director: false,
+      genre: false,
+      leadActor: false,
+      leadActress: false,
+      yearLaunched: false,
+    });
+    setGameOngoing(true);
+    setcorrectStatus("Guess?")
     startTimer();
+    setGameStarts(true);
     setCurrentQuestion(moviedataSet[Round]);
   }
 
@@ -88,7 +122,10 @@ const PlayArea = ({ socket }) => {
       setcorrectStatus("Correct");
       const name = localStorage.getItem("playerName");
       socket.emit("guessedit", { Room, name });
-
+      setcurrScore((prev)=>prev+roundScore);
+      socket.emit("scoreEmit",{Room,name,score:currScore});
+      scoreUpdate(name,currScore);
+      roundEnds();
     }else{
       setcorrectStatus("Wrong");
     }
@@ -101,7 +138,20 @@ const PlayArea = ({ socket }) => {
 
   function handleHints(e) {
     setHints({ ...hints, [e.target.name]: true });
+    setroundScore((prev)=>prev-6);
   }
+
+  function scoreUpdate (name,score) {
+    const newData = [...points];
+    const index = newData.findIndex(item => item.name === name);
+    if (index !== -1) {
+      newData[index].score = score;
+    }else{
+      const newDataItem = {name:name,score:score};
+      newData.push(newDataItem);
+    }
+    setpoints(newData);
+};
 
   return (
     <div className="playAreaContainer">
@@ -124,8 +174,8 @@ const PlayArea = ({ socket }) => {
       </div>
       <div className="row2playarea">
         <div className="col1row2pa">
-          {gameongoing && (
             <div className="ongoinggamearea">
+              {GameStarts &&
               <div className="hintswindow">
                 <div className="hintsPa">
                   {hints.yearLaunched ? (
@@ -177,8 +227,9 @@ const PlayArea = ({ socket }) => {
                 <div className="guessiconPa">
                     {correctStatus}
                 </div>
-              </div>
-              <div className="inputFPa">
+              </div>}
+          {gameongoing && (
+            <div className="inputFPa">
                 <input
                   type="text"
                   placeholder="enter the movie name"
@@ -197,8 +248,8 @@ const PlayArea = ({ socket }) => {
                 />
                 <button onClick={guessButton}>Guess It</button>
               </div>
+              )}
             </div>
-          )}
         </div>
         <div className="col2row2pa">
           {points.map((data,index)=>{return (
@@ -226,17 +277,3 @@ export default PlayArea;
 //   { id: 3, name: 'Bob' }
 // ]);
 
-// const updateData = () => {
-//   // Make a copy of the data array
-//   const newData = [...data];
-
-//   // Find the object to update based on a condition (e.g., id)
-//   const index = newData.findIndex(item => item.id === 2);
-//   if (index !== -1) {
-//     // Update the object's properties
-//     newData[index].name = 'Updated Name';
-//   }
-
-//   // Set the updated array as the new state
-//   setData(newData);
-// };
