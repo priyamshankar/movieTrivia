@@ -21,7 +21,6 @@ $accent-color : #8f2119;
         display: grid;
         height: 40%;
         gap: 0.6rem;
-        // width: 90%;
         grid-template-columns: 80% 20%;
         .col1row1pa{
             background-color: $primary-color;
@@ -65,13 +64,79 @@ $accent-color : #8f2119;
         grid-template-columns: 60% 40%;
         gap: 0.6rem;
         height: 30%;
-        // width: 90%;
         .col1row2pa{
             background-color: $global-text;
+            .ongoinggamearea{
+                display: grid;
+                grid-template-rows: 8fr 1.35fr;
+                .hintswindow{
+                    display: grid;
+                    grid-template-columns: 3fr 2fr;
+                    align-items: center;
+                    justify-content: center;
+                    .guessiconPa{
+                        color: black;
+                        font-family: 'Chakra Petch', sans-serif;
+                        font-size: 60px;
+                    }
+                }
+                .hintsPa{
+                    color: #062123;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.3rem;
+                    padding: 1rem 1rem 1rem 1rem;
+                    font-size: 20px;
+                    font-weight: 600;
+                    text-align: center;
+                    button{
+                        all: unset;
+                        color: $global-text;
+                        background-color: $secondary-color;
+                        width: 10rem;
+                        text-align: center;
+                        height: 2rem;
+                        cursor: pointer;
+                        border-radius: 10px;
+                    }
+                }
+                .inputFPa{
+                    display: flex;
+                    gap: 2rem;
+                    input{
+                        all: unset;
+                        margin-left: 2rem;
+                        text-align: center;
+                        color: $accent-color;
+                        border: solid 1px $accent-color;
+                        border-radius: 10px;
+                        height: 2rem;
+                    }
+                    button{
+                        all: unset;
+                        background-color: $accent-color;
+                        height: 2rem;
+                        border-radius: 10px;
+                        width: 5rem;
+                        text-align: center;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
         .col2row2pa{
             background-color: $accent-color;
-
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+            .pointsMap{
+                display: flex;
+                gap: 2rem;
+            }
         }
     }
 }

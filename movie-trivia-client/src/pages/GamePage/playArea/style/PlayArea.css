@@ -60,6 +60,74 @@
 .playAreaContainer .row2playarea .col1row2pa {
   background-color: #f6fdfd;
 }
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea {
+  display: grid;
+  grid-template-rows: 8fr 1.35fr;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .hintswindow {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+  justify-content: center;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .hintswindow .guessiconPa {
+  color: black;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 60px;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .hintsPa {
+  color: #062123;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1rem 1rem 1rem;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .hintsPa button {
+  all: unset;
+  color: #f6fdfd;
+  background-color: #0a3034;
+  width: 10rem;
+  text-align: center;
+  height: 2rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .inputFPa {
+  display: flex;
+  gap: 2rem;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .inputFPa input {
+  all: unset;
+  margin-left: 2rem;
+  text-align: center;
+  color: #8f2119;
+  border: solid 1px #8f2119;
+  border-radius: 10px;
+  height: 2rem;
+}
+.playAreaContainer .row2playarea .col1row2pa .ongoinggamearea .inputFPa button {
+  all: unset;
+  background-color: #8f2119;
+  height: 2rem;
+  border-radius: 10px;
+  width: 5rem;
+  text-align: center;
+  cursor: pointer;
+}
 .playAreaContainer .row2playarea .col2row2pa {
   background-color: #8f2119;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.playAreaContainer .row2playarea .col2row2pa .pointsMap {
+  display: flex;
+  gap: 2rem;
 }/*# sourceMappingURL=PlayArea.css.map */
