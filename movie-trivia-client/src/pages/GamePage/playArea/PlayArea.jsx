@@ -15,6 +15,9 @@ const PlayArea = ({ socket }) => {
   const [GameStarts, setGameStarts] = useState(false)
   const [currScore, setcurrScore] = useState(0)
   const [roundScore,setroundScore] = useState(50);
+  const [points, setpoints] = useState([{
+    name: localStorage.getItem("playerName"), score : 0
+  }]); 
   const [admin, setadmin] = useState(localStorage.getItem("admin"));
   const [Round, setRound] = useState(-1);
   const [hints, setHints] = useState({
@@ -24,9 +27,6 @@ const PlayArea = ({ socket }) => {
     leadActress: false,
     yearLaunched: false,
   });
-  const [points, setpoints] = useState([{
-    name: localStorage.getItem("playerName"), score : 0
-  }]); 
 
   useEffect(() => {
     async function getData() {
@@ -89,7 +89,7 @@ const PlayArea = ({ socket }) => {
   }
   
   function startTimer() {
-    setTimer(10);
+    setTimer(400);
   }
   
   function roundEnds(){
@@ -123,13 +123,18 @@ const PlayArea = ({ socket }) => {
       const name = localStorage.getItem("playerName");
       socket.emit("guessedit", { Room, name });
       setcurrScore((prev)=>prev+roundScore);
-      socket.emit("scoreEmit",{Room,name,score:currScore});
-      scoreUpdate(name,currScore);
       roundEnds();
     }else{
       setcorrectStatus("Wrong");
     }
   }
+  useEffect(() => {
+    const name = localStorage.getItem("playerName");
+    scoreUpdate(name, currScore);
+    socket.emit("scoreEmit",{Room,name,score:currScore});
+  }, [currScore]);
+
+
 
   function startRoundButton() {
     socket.emit("startRoundbtn", { Room });
@@ -253,7 +258,7 @@ const PlayArea = ({ socket }) => {
         </div>
         <div className="col2row2pa">
           {points.map((data,index)=>{return (
-            <div className="pointsMap">
+            <div className="pointsMap" key={index}>
               <div className="playerPointname">
 
               {data.name}
