@@ -27,7 +27,7 @@ io.on("connection",(socket)=>{
     });
 
     socket.on("startRoundbtn",(data)=>{
-        socket.to(data.Room).emit("startGame",{room:data.Room});
+        socket.to(data.Room).emit("startGame",{room:data.Room,round:data.Round});
     });
     socket.on("scoreEmit",(data)=>{
         const Room = data.Room;

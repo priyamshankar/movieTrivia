@@ -27,6 +27,7 @@ const PlayArea = ({ socket }) => {
     leadActress: false,
     yearLaunched: false,
   });
+
   const gameTimeoutRef = useRef();
 
   useEffect(() => {
@@ -42,11 +43,11 @@ const PlayArea = ({ socket }) => {
   }, []);
 
   useEffect(() => {
-    const handleStartGame = () => {
-      startRound();
+  
+    const startGameListener = (data) => {
+      setRound((prevRound) => data.round);
     };
-    // roundEnds();
-    socket.on("startGame", handleStartGame);
+    socket.on("startGame", startGameListener);
     socket.on("someoneJoined",(data)=>{
       scoreOnjoinHandler(data.name);
     })
@@ -61,6 +62,13 @@ const PlayArea = ({ socket }) => {
     };
   }, [moviedataSet, Round, socket]);
 
+  useEffect(() => {
+    if(admin=="false"){
+      // handleStartGame();
+      console.log("hey")
+      startRound();
+    }
+  }, [Round]);
   
   function scoreOnjoinHandler(mess){
     setpoints((prev)=>[...prev,{
@@ -72,7 +80,6 @@ const PlayArea = ({ socket }) => {
     setTimer(400);
   }
 
-  // let gameTimeout;
   useEffect(() => {
 
     const decrementTimer = () => {
@@ -85,8 +92,9 @@ const PlayArea = ({ socket }) => {
       gameTimeoutRef.current = setTimeout(decrementTimer, 1000);
     }
     if (timer === 0) {
-      // setRound(Round + 1);
-      setRound((prevRound) => prevRound + 1);
+      if(admin==="true"){
+        setRound((prevRound) => prevRound + 1);
+      }
       setGameOngoing(false);
       if (Round === 5) {
         gameOver();
@@ -115,7 +123,9 @@ const PlayArea = ({ socket }) => {
     setcorrectStatus("Guess?")
     startTimer();
     setGameStarts(true);
-    setCurrentQuestion(moviedataSet[Round]);
+    if(moviedataSet!=null){
+      setCurrentQuestion(moviedataSet[Round]);
+    }
   }
 
   function gameOver() {}
@@ -140,7 +150,7 @@ const PlayArea = ({ socket }) => {
 
 
   function startRoundButton() {
-    socket.emit("startRoundbtn", { Room });
+    socket.emit("startRoundbtn", { Room,Round });
     startRound();
   }
 
