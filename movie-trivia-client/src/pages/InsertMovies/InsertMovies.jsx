@@ -15,6 +15,9 @@ const InsertMovies = () => {
   function handlechange(e) {
     setFormData({ ...formData, [e.target.name]: [e.target.value] });
   }
+  function handlechangeMovieName(e) {
+    setFormData({ ...formData, [e.target.name]: [e.target.value.toLowerCase()] });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,7 +38,7 @@ const InsertMovies = () => {
           name="movieName"
           placeholder="movieName"
           onClick={erase}
-          onChange={handlechange}
+          onChange={handlechangeMovieName}
         />
         <input
           type="text"

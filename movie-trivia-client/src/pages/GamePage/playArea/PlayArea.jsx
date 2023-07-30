@@ -27,7 +27,7 @@ const PlayArea = ({ socket }) => {
     leadActress: false,
     yearLaunched: false,
   });
-
+  const [gameOverFlag, setgameOverFlag]=useState(false);
   const gameTimeoutRef = useRef();
 
   useEffect(() => {
@@ -128,7 +128,10 @@ const PlayArea = ({ socket }) => {
     }
   }
 
-  function gameOver() {}
+  function gameOver() {
+    alert("gameCompleted go to home page to play another rounds.");
+    setgameOverFlag(true);
+  }
 
   function guessButton() {
     if (answer === currentQuestion.movieName) {
@@ -137,17 +140,19 @@ const PlayArea = ({ socket }) => {
       socket.emit("guessedit", { Room, name });
       setcurrScore((prev)=>prev+roundScore);
       roundEnds();
+      if(Round===4){
+        gameOver();
+      }
     }else{
       setcorrectStatus("Wrong");
     }
   }
+
   useEffect(() => {
     const name = sessionStorage.getItem("playerName");
     scoreUpdate(name, currScore);
     socket.emit("scoreEmit",{Room,name,score:currScore});
   }, [currScore]);
-
-
 
   function startRoundButton() {
     socket.emit("startRoundbtn", { Room,Round });
@@ -181,7 +186,7 @@ const PlayArea = ({ socket }) => {
         </div>
         <div className="col2row1pa">
           <span>{timer}</span>
-          {admin === "true" && !gameongoing ? (
+          {gameOverFlag===false &&admin === "true" && !gameongoing ? (
             <>
               <button onClick={startRoundButton}> Start game </button>
             </>
@@ -253,7 +258,7 @@ const PlayArea = ({ socket }) => {
                   placeholder="enter the movie name"
                   value={answer}
                   onChange={(e) => {
-                    setAnswer(e.target.value);
+                    setAnswer(e.target.value.toLowerCase());
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
@@ -288,10 +293,3 @@ const PlayArea = ({ socket }) => {
 };
 
 export default PlayArea;
-
-// const [data, setData] = useState([
-//   { id: 1, name: 'John' },
-//   { id: 2, name: 'Jane' },
-//   { id: 3, name: 'Bob' }
-// ]);
-
