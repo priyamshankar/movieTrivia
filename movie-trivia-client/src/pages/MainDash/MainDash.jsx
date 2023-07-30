@@ -30,7 +30,7 @@ const MainDash = () => {
     if (roomId != null) {
       const result = await isRoomValid();
       if (result === true) {
-        localStorage.setItem("admin", false);
+        sessionStorage.setItem("admin", false);
         navigate(`/game/${roomId}`);
       } else {
         alert("Room id dosen't exist Enter a valid one");
@@ -59,7 +59,7 @@ const MainDash = () => {
         })
         .then((res) => {
           // console.log(res);
-          localStorage.setItem("admin", true);
+          sessionStorage.setItem("admin", true);
           navigate(`/game/${roomId}`);
         });
     }
@@ -110,7 +110,7 @@ const MainDash = () => {
             type="text"
             placeholder="enter you name"
             onChange={(e) => {
-              localStorage.setItem("playerName", e.target.value);
+              sessionStorage.setItem("playerName", e.target.value);
               setplayerName(e.target.value);
             }}
           />
@@ -146,7 +146,7 @@ const MainDash = () => {
             type="text"
             placeholder="enter you name"
             onChange={(e) => {
-              localStorage.setItem("playerName", e.target.value);
+              sessionStorage.setItem("playerName", e.target.value);
               setplayerName(e.target.value);
             }}
           />
@@ -183,7 +183,7 @@ const MainDash = () => {
           type="text"
           placeholder="enter you name"
           onChange={(e) => {
-            localStorage.setItem("playerName", e.target.value);
+            sessionStorage.setItem("playerName", e.target.value);
             setplayerName(e.target.value);
           }}
           />

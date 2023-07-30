@@ -16,9 +16,9 @@ const PlayArea = ({ socket }) => {
   const [currScore, setcurrScore] = useState(0)
   const [roundScore,setroundScore] = useState(50);
   const [points, setpoints] = useState([{
-    name: localStorage.getItem("playerName"), score : 0
+    name: sessionStorage.getItem("playerName"), score : 0
   }]); 
-  const [admin, setadmin] = useState(localStorage.getItem("admin"));
+  const [admin, setadmin] = useState(sessionStorage.getItem("admin"));
   const [Round, setRound] = useState(-1);
   const [hints, setHints] = useState({
     director: false,
@@ -133,7 +133,7 @@ const PlayArea = ({ socket }) => {
   function guessButton() {
     if (answer === currentQuestion.movieName) {
       setcorrectStatus("Correct");
-      const name = localStorage.getItem("playerName");
+      const name = sessionStorage.getItem("playerName");
       socket.emit("guessedit", { Room, name });
       setcurrScore((prev)=>prev+roundScore);
       roundEnds();
@@ -142,7 +142,7 @@ const PlayArea = ({ socket }) => {
     }
   }
   useEffect(() => {
-    const name = localStorage.getItem("playerName");
+    const name = sessionStorage.getItem("playerName");
     scoreUpdate(name, currScore);
     socket.emit("scoreEmit",{Room,name,score:currScore});
   }, [currScore]);

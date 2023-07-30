@@ -7,7 +7,7 @@ const ChatArea = ({ socket }) => {
   const params = useParams();
   const [Room, setRoom] = useState(params.roomData);
   const [shownmessages, setshownmessages] = useState([]);
-  const [pName, setPname] = useState(localStorage.getItem("playerName"));
+  const [pName, setPname] = useState(sessionStorage.getItem("playerName"));
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
@@ -54,7 +54,7 @@ const ChatArea = ({ socket }) => {
   }
 
   async function sendmessage() {
-    const name = await localStorage.getItem("playerName");
+    const name = await sessionStorage.getItem("playerName");
     setshownmessages((prevD) => [...prevD, { message: message, name: pName }]);
     await socket.emit("sendmessage", { Room, message, name });
     setMessage("");

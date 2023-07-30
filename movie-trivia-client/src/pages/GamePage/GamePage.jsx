@@ -16,8 +16,8 @@ const GamePage = () => {
 
   useEffect(() => {
     if (Room != null) {
-      socket.emit("joinRoom", {name:localStorage.getItem("playerName"),Room:Room});
-      if (localStorage.getItem("playerName") == null) {
+      socket.emit("joinRoom", {name:sessionStorage.getItem("playerName"),Room:Room});
+      if (sessionStorage.getItem("playerName") == null) {
         alert("Enter your name at the main page");
         navigate("/");
       }
@@ -31,7 +31,7 @@ const GamePage = () => {
 
   async function sendmessage(e) {
     e.preventDefault();
-    const name =await localStorage.getItem("playerName");
+    const name =await sessionStorage.getItem("playerName");
     socket.emit("sendmessage", { Room, message, name });
   }
 
