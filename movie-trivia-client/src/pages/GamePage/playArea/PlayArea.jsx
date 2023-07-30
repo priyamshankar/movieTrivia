@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./style/PlayArea.css";
 
@@ -27,6 +27,7 @@ const PlayArea = ({ socket }) => {
     leadActress: false,
     yearLaunched: false,
   });
+  const gameTimeoutRef = useRef();
 
   useEffect(() => {
     async function getData() {
@@ -44,6 +45,7 @@ const PlayArea = ({ socket }) => {
     const handleStartGame = () => {
       startRound();
     };
+    // roundEnds();
     socket.on("startGame", handleStartGame);
     socket.on("someoneJoined",(data)=>{
       scoreOnjoinHandler(data.name);
@@ -59,7 +61,18 @@ const PlayArea = ({ socket }) => {
     };
   }, [moviedataSet, Round, socket]);
 
-  let gameTimeout;
+  
+  function scoreOnjoinHandler(mess){
+    setpoints((prev)=>[...prev,{
+      name:mess,score:0
+    }])
+  }
+  
+  function startTimer() {
+    setTimer(400);
+  }
+
+  // let gameTimeout;
   useEffect(() => {
 
     const decrementTimer = () => {
@@ -69,7 +82,7 @@ const PlayArea = ({ socket }) => {
     };
 
     if (timer > 0) {
-      gameTimeout = setTimeout(decrementTimer, 1000);
+      gameTimeoutRef.current = setTimeout(decrementTimer, 1000);
     }
     if (timer === 0) {
       // setRound(Round + 1);
@@ -81,20 +94,10 @@ const PlayArea = ({ socket }) => {
       roundEnds();
     }
   }, [timer, setTimer]);
-
-  function scoreOnjoinHandler(mess){
-    setpoints((prev)=>[...prev,{
-      name:mess,score:0
-    }])
-  }
-  
-  function startTimer() {
-    setTimer(400);
-  }
   
   function roundEnds(){
+    clearTimeout(gameTimeoutRef.current);
     setTimer(0);
-    clearTimeout(gameTimeout);
   }
   
   function startRound() {
