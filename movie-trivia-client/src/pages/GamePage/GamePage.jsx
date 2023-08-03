@@ -7,7 +7,7 @@ import ChatArea from "./chatArea/ChatArea";
 
 
 const GamePage = () => {
-  const socket = io("http://localhost:8005");
+  const socket = io("http://localhost:5000");
   const navigate = useNavigate();
   const params = useParams();
   const [Room, setRoom] = useState(params.roomData);

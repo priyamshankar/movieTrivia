@@ -3,10 +3,12 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 5000;
-require("./socket/socket");
+const http = require("http");
+const socketLogic = require("./socket/socket");
 
 const router = require("./routes/routes");
 // Enable CORS for all routes
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -15,9 +17,12 @@ app.use((req, res, next) => {
   next();
 });
 
+const server = http.createServer(app);
+socketLogic(server);
+
 app.use(express.json());
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log("backend connected");
 });
 
