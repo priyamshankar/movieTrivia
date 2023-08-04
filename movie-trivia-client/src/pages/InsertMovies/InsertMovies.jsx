@@ -21,13 +21,25 @@ const InsertMovies = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/postmovie", formData).then((res) => {
-      console.log(res);
-    });
+    var val = true;
+    for (const field in formData){
+      // console.log();
+      if (formData[field][0]=== "") {
+        val = false;
+      }
+    }
+    if(val){
+      axios.post("http://localhost:5000/api/postmovie", formData).then((res) => {
+        console.log(res);
+      });
+    }else {
+      alert ("Please fill all the details");
+    }
   }
 
   function erase(e) {
     e.target.value = "";
+    setFormData({ ...formData, [e.target.name]: [""] });
   }
 
   return (
