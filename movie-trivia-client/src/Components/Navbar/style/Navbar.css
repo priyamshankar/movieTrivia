@@ -6,6 +6,10 @@
   align-items: center;
   color: #f6fdfd;
 }
+.navbar-container a {
+  all: unset;
+  cursor: pointer;
+}
 .navbar-container .grid-right-half-nav {
   padding-left: 8rem;
   display: flex;

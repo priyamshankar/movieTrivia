@@ -15,7 +15,7 @@ function App() {
           <Route path="/selection" element={<GameSelection/>}/>
           <Route path="/" element={<MainDash/>}/>
           <Route path="/game/:roomData" element={<GamePage/>}/>
-          <Route path="/gamedev" element={<InsertMovies/>}/>
+          <Route path="/suggest" element={<InsertMovies/>}/>
         </Routes>
       </BrowserRouter>
     </div>

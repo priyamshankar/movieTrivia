@@ -8,6 +8,10 @@ $nav-font-height:18px;
 
 
 .navbar-container{
+    a{
+        all:unset;
+        cursor: pointer;
+    }
     height: 100%;
     width: 100%;
     display: grid;

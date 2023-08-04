@@ -8,24 +8,25 @@ const Navbar = () => {
         <div className="grid-right-half-nav">
 
             <div className="logo">
-                <img src={logo} alt="Logo" />
+               <a href="/"> <img src={logo} alt="Logo" /></a>
             </div>
             <div className="BrandName">
-                SmartSharads
+               <a href="/"> SmartSharads </a>
             </div>
         
         </div>
         <div className="gridlefthalf-nav">
                 <div className="font-nav-links">
-                    Github
+                    <a href="/suggest">Suggest Movies</a> 
                 </div>
                 <div className="font-nav-links">
-                    Linkedin
+                   <a href="/howto">How to Play</a> 
                 </div>
-                <div className="font-nav-links">
+                {/* <div className="font-nav-links">
                     Leetcode
-                </div>
-                <button>Support</button>
+                </div> */}
+                <a href="http://github.com/priyamshankar" target="_blank">
+                <button>Contact us</button>    </a>
         </div>
     </div>
   )
