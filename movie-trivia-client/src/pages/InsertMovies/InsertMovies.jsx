@@ -29,7 +29,7 @@ const InsertMovies = () => {
       }
     }
     if(val){
-      axios.post("http://localhost:5000/api/postmovie", formData).then((res) => {
+      axios.post("http://192.168.21.99:5000/api/postmovie", formData).then((res) => {
         console.log(res);
       });
     }else {

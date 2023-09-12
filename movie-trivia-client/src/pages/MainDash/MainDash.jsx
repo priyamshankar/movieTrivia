@@ -13,7 +13,7 @@ const MainDash = () => {
   async function isRoomValid() {
     var state;
     await axios
-      .post("http://localhost:5000/api/checkroom", {
+      .post("http://192.168.21.99:5000/api/checkroom", {
         room: roomId,
       })
       .then((res) => {
@@ -49,7 +49,7 @@ const MainDash = () => {
       alert("Room id already exist Enter another one");
     } else {
       axios
-        .post("http://localhost:5000/api/addroom", {
+        .post("http://192.168.21.99:5000/api/addroom", {
           room: roomId,
           players: [
             {
